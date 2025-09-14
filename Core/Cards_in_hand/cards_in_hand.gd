@@ -10,10 +10,11 @@ const Card_Background = [
 ]
 
 enum Ids {ChampiHouse}
-enum Cards_Data {Type, Cost, Score}
+enum Cards_Data {Texture, Type, Cost, Score}
 
 const Cards = {
 	Ids.ChampiHouse: {
+		Cards_Data.Texture: preload("res://Assets/champi_maison.png"),
 		Cards_Data.Type: MyGame.building_type.Production,
 		Cards_Data.Cost: 1,
 		Cards_Data.Score: 1
@@ -51,7 +52,8 @@ func create_card(id:Ids):
 	card.initialize_card(
 		Card_Background[data[Cards_Data.Type]],
 		data[Cards_Data.Cost],
-		data[Cards_Data.Score]
+		data[Cards_Data.Score],
+		data[Cards_Data.Texture]
 	)
 
 func cards_deck(card_amount: int) -> void:
