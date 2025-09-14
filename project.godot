@@ -11,8 +11,30 @@ config_version=5
 [application]
 
 config/name="GWJ85-Automnia"
+run/main_scene="uid://cblhpjvwon5kf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+addons/rakugo_game_template/loading_scene_path="res://scenes/LoadingScreen/LoadingScreen.tscn"
+addons/rakugo_game_template/main_menu_path="res://scenes/MainMenu/MainMenu.tscn"
+addons/rakugo_game_template/first_game_scene_path="res://scenes/Game/game.tscn"
+
+[autoload]
+
+AppSettings="*res://addons/rakugo_game_template/Autoloads/AppSettings.gd"
+SceneLoader="*res://addons/rakugo_game_template/Autoloads/SceneLoader.gd"
+ProjectMusicController="*res://addons/rakugo_game_template/Autoloads/ProjectMusicController.tscn"
+UISoundManager="*res://addons/rakugo_game_template/Autoloads/UISoundManager/UISoundManager.tscn"
+Transitions="*res://addons/rakugo_game_template/Autoloads/Transitions/transitions.tscn"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rakugo_game_template/plugin.cfg")
 
 [rendering]
 
