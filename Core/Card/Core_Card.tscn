@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://t8h8ev5w8iud"]
 
-[ext_resource type="Script" path="res://Core/Card/Core_Card.gd" id="1"]
+[ext_resource type="Script" uid="uid://dpobslfcblqf" path="res://Core/Card/Core_Card.gd" id="1"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Core/Curves/Angle_Curve.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://b1tk3imjw5dfm" path="res://Core/PlaceHolderFront.svg" id="3_tnkkd"]
 
@@ -61,8 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2o6qs"]
 _data = {
-"RESET": SubResource("Animation_fpo18"),
-"focus": SubResource("Animation_bpy3q")
+&"RESET": SubResource("Animation_fpo18"),
+&"focus": SubResource("Animation_bpy3q")
 }
 
 [node name="CoreCard" type="Control"]

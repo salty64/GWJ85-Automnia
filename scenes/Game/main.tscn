@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy6n8rbbc3g3s"]
 
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="2_0xm2m"]
-[ext_resource type="Script" path="res://scenes/Game/control.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://dbwubktiqgxsf" path="res://scenes/Game/control.gd" id="2_h2yge"]
 
 [node name="Main" type="Node2D"]
 

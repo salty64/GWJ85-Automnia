@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vh1ucj2rfbby"]
 
-[ext_resource type="Script" path="res://scenes/OptionsMenu/OptionsMenu.gd" id="2"]
+[ext_resource type="Script" uid="uid://csnkyuvlfevhy" path="res://scenes/OptionsMenu/OptionsMenu.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bosy6wwf0vleq" path="res://scenes/OptionsMenu/Audio/AudioControl/AudioControl.tscn" id="2_xrxr1"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
