@@ -6,7 +6,6 @@ signal clear_card_done
 
 const Card_Background = [
 	preload("res://Assets/Cards/greencard.svg"),
-	preload("res://Assets/Cards/pinkcard.svg"),
 	preload("res://Assets/Cards/redcard.svg")
 ]
 
@@ -31,12 +30,15 @@ func _ready():
 
 func _process(_delta):
 	pass
+	
+func create_card(building_type:MyGame.building_type, cost:int, score:int):
+	var card = CARD.instantiate()
+	add_child(card)
+	card.initialize_card(Card_Background[building_type], cost, score)
 
 func cards_deck(card_amount: int) -> void:
 	for child_index in range(card_amount):
-		var card = CARD.instantiate()
-		add_child(card)
-		card.initialize_card(Card_Background[0], 0, 0)
+		create_card(MyGame.building_type.Production, 1, 1)
 
 func clear_all_cards(except: CardUI = null):
 	var tw0 = null

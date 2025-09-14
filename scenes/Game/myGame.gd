@@ -1,4 +1,7 @@
 extends Game
+class_name MyGame
+
+enum building_type{Production, Residence}
 
 @onready var map:Map = %Map
 
