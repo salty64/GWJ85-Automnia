@@ -5,7 +5,9 @@
 [ext_resource type="Curve" uid="uid://du3h5uubydmns" path="res://Core/Curves/Height_Curve.tres" id="3"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Core/Curves/Angle_Curve.tres" id="4"]
 
-[node name="Cards_in_hand" type="Node2D"]
+[node name="Cards_in_hand" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1")
 spread_curve = ExtResource("2")
 height_curve = ExtResource("3")

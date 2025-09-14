@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=10 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://crmrv87ck72hw" path="res://scenes/Game/game.gd" id="1_o2piy"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
@@ -7,6 +7,77 @@
 [ext_resource type="Script" uid="uid://gfgjfmgyujtv" path="res://scenes/Game/Sprite2D.gd" id="4_lltyx"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="6_5734q"]
 [ext_resource type="Script" uid="uid://dbwubktiqgxsf" path="res://scenes/Game/control.gd" id="7_dxsly"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t5wam"]
+texture = ExtResource("3_6luik")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1p5ji"]
+tile_shape = 1
+sources/1 = SubResource("TileSetAtlasSource_t5wam")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_o2piy")
@@ -21,16 +92,49 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="RemoveMe" type="VBoxContainer" parent="."]
+[node name="Control" type="Control" parent="GUI" node_paths=PackedStringArray("hand")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_dxsly")
+hand = NodePath("../Cards_in_hand")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button3" type="Button" parent="GUI/Control/HBoxContainer"]
+layout_mode = 2
+text = "Redraw 3"
+
+[node name="Button4" type="Button" parent="GUI/Control/HBoxContainer"]
+layout_mode = 2
+text = "Redraw 4"
+
+[node name="Button5" type="Button" parent="GUI/Control/HBoxContainer"]
+layout_mode = 2
+text = "Redraw 5"
+
+[node name="Button6" type="Button" parent="GUI/Control/HBoxContainer"]
+layout_mode = 2
+text = "Draw +1"
+
+[node name="RemoveMe" type="VBoxContainer" parent="GUI"]
 visible = false
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_top = -120.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="RemoveMe"]
+[node name="Label" type="Label" parent="GUI/RemoveMe"]
 layout_mode = 2
 text = "This is the fake game scene.
 You can update it.
@@ -42,17 +146,19 @@ Press Esc to open the pause menu.
 Here you can choose to win or loose:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RemoveMe"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/RemoveMe"]
 layout_mode = 2
 alignment = 1
 
-[node name="WinButton" type="Button" parent="RemoveMe/HBoxContainer"]
+[node name="WinButton" type="Button" parent="GUI/RemoveMe/HBoxContainer"]
 layout_mode = 2
 text = "Win"
 
-[node name="LooseButton" type="Button" parent="RemoveMe/HBoxContainer"]
+[node name="LooseButton" type="Button" parent="GUI/RemoveMe/HBoxContainer"]
 layout_mode = 2
 text = "Loose"
+
+[node name="Cards_in_hand" parent="GUI" instance=ExtResource("6_5734q")]
 
 [node name="PauseChecker" type="Sprite2D" parent="."]
 visible = false
@@ -60,40 +166,16 @@ position = Vector2(637, 143)
 texture = ExtResource("3_6luik")
 script = ExtResource("4_lltyx")
 
-[node name="Cards_in_hand" parent="." instance=ExtResource("6_5734q")]
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_1p5ji")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("7_dxsly")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button3" type="Button" parent="Control/HBoxContainer"]
-layout_mode = 2
-text = "Redraw 3"
-
-[node name="Button4" type="Button" parent="Control/HBoxContainer"]
-layout_mode = 2
-text = "Redraw 4"
-
-[node name="Button5" type="Button" parent="Control/HBoxContainer"]
-layout_mode = 2
-text = "Redraw 5"
-
-[node name="Button6" type="Button" parent="Control/HBoxContainer"]
-layout_mode = 2
-text = "Draw +1"
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(691, 494)
 
 [connection signal="ask_to_save" from="GUI/PauseMenu" to="." method="_on_pause_menu_ask_to_save"]
-[connection signal="pressed" from="RemoveMe/HBoxContainer/WinButton" to="." method="_on_win"]
-[connection signal="pressed" from="RemoveMe/HBoxContainer/LooseButton" to="." method="_on_gameover"]
-[connection signal="pressed" from="Control/HBoxContainer/Button3" to="Control" method="_on_button_3_pressed"]
-[connection signal="pressed" from="Control/HBoxContainer/Button4" to="Control" method="_on_button_4_pressed"]
-[connection signal="pressed" from="Control/HBoxContainer/Button5" to="Control" method="_on_button_5_pressed"]
-[connection signal="pressed" from="Control/HBoxContainer/Button6" to="Control" method="_on_button_6_pressed"]
+[connection signal="pressed" from="GUI/Control/HBoxContainer/Button3" to="GUI/Control" method="_on_button_3_pressed"]
+[connection signal="pressed" from="GUI/Control/HBoxContainer/Button4" to="GUI/Control" method="_on_button_4_pressed"]
+[connection signal="pressed" from="GUI/Control/HBoxContainer/Button5" to="GUI/Control" method="_on_button_5_pressed"]
+[connection signal="pressed" from="GUI/Control/HBoxContainer/Button6" to="GUI/Control" method="_on_button_6_pressed"]
+[connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/WinButton" to="." method="_on_win"]
+[connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/LooseButton" to="." method="_on_gameover"]

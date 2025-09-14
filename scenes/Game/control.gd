@@ -1,6 +1,6 @@
 extends Control
 
-@onready var hand = $"../Cards_in_hand"
+@export var hand:Hand
 
 func _on_button_3_pressed() -> void:
 	hand.clear_all_cards()
@@ -20,7 +20,6 @@ func _on_button_4_pressed() -> void:
 
 
 func _on_button_5_pressed() -> void:
-	
 	hand.cards_deck(5)
 	hand.rearrange_cards()
 	pass # Replace with function body.
