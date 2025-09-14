@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1flo1brh3p4c"]
 
-[ext_resource type="Script" path="res://scenes/Game/game.gd" id="1_o2piy"]
+[ext_resource type="Script" uid="uid://crmrv87ck72hw" path="res://scenes/Game/game.gd" id="1_o2piy"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
 [ext_resource type="Texture2D" uid="uid://d1vim68285syu" path="res://icon.svg" id="3_6luik"]
 [ext_resource type="PackedScene" uid="uid://cp3p3kqcjh0me" path="res://scenes/EndMenu/EndMenu.tscn" id="3_yfekm"]
-[ext_resource type="Script" path="res://scenes/Game/Sprite2D.gd" id="4_lltyx"]
+[ext_resource type="Script" uid="uid://gfgjfmgyujtv" path="res://scenes/Game/Sprite2D.gd" id="4_lltyx"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="6_5734q"]
-[ext_resource type="Script" path="res://scenes/Game/control.gd" id="7_dxsly"]
+[ext_resource type="Script" uid="uid://dbwubktiqgxsf" path="res://scenes/Game/control.gd" id="7_dxsly"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_o2piy")
