@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp3rgqaehb3xu"]
 
-[ext_resource type="Script" uid="uid://cm4jgcw3em1ea" path="res://scenes/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
-[ext_resource type="Script" uid="uid://bg8bkwm8vu717" path="res://scenes/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
+[ext_resource type="Script" path="res://scenes/OptionsMenu/Input/InputOptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/OptionsMenu/Input/KeyAssignmentDialog.gd" id="3_wsh2h"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
