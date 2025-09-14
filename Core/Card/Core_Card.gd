@@ -4,10 +4,10 @@ extends Control
 @onready var hand:Hand = get_parent() 
 @export var rotation_curve : Curve;
 
-@onready var artwork = $Card/Bg 
+@onready var artwork:Sprite2D = $Card/Bg 
 @onready var titre = $Card/Bg/VBoxContainer/Name
-@onready var cost = $Card/Bg/VBoxContainer/HBoxContainer/Cost
-@onready var effect =  $Card/Bg/VBoxContainer/HBoxContainer/Effect
+@onready var m_cost = $Card/Bg/VBoxContainer/HBoxContainer/Cost
+@onready var m_effect =  $Card/Bg/VBoxContainer/HBoxContainer/Effect
 
 var parent: Control
 
@@ -19,9 +19,6 @@ var disabled := false
 var card_anime = null
 var card_rotation :float
 
-var m_card_desc : Card_Desc
-
-
 func _ready():
 	card_anime = get_node("card_anime")
 	$Card/Bg/hover_control.show()
@@ -31,12 +28,10 @@ func animate_to_position(new_position: Vector2, duration: float, new_rotation: f
 	tween.tween_property(self, "global_position", new_position, duration)
 	tween.tween_property(self, "rotation", -new_rotation, duration) #self.rotation = -new_rotation
 
-func initialize_card(card_desc:Card_Desc):
-	m_card_desc = card_desc
-	artwork.texture = m_card_desc.artwork
-	titre.text = m_card_desc.name
-	cost.text = str(m_card_desc.cost)
-	effect.text = str(m_card_desc.effect)
+func initialize_card(card_background:Texture2D, cost:int, score:int):
+	artwork.texture = card_background
+	m_cost.text = str(cost)
+	m_effect.text = str(score)
 
 func _on_control_mouse_entered():
 	card_anime.play("focus")

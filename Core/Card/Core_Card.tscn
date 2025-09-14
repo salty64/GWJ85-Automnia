@@ -117,7 +117,7 @@ offset_bottom = 100.0
 
 [node name="card_anime" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_2o6qs")
+&"": SubResource("AnimationLibrary_2o6qs")
 }
 speed_scale = 3.0
 

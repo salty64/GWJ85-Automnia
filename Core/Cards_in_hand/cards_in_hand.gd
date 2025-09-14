@@ -4,14 +4,18 @@ class_name Hand
 signal card_played
 signal clear_card_done
 
+const Card_Background = [
+	preload("res://Assets/Cards/greencard.svg"),
+	preload("res://Assets/Cards/pinkcard.svg"),
+	preload("res://Assets/Cards/redcard.svg")
+]
+
 const CARD = preload("res://Core/Card/Core_Card.tscn")
-const Card_Database = preload("res://Core/Deck/cards_database.tres")
+
 @export_category("Curves")
 @export var spread_curve: Curve
 @export var height_curve: Curve
 @export var rotation_curve: Curve
-
-var card_desc : Card_Desc
 
 var current_card: CardUI
 var card_index: int = 0
@@ -32,7 +36,7 @@ func cards_deck(card_amount: int) -> void:
 	for child_index in range(card_amount):
 		var card = CARD.instantiate()
 		add_child(card)
-		card.initialize_card(Card_Database.cards[randi_range(0, Card_Database.cards.size() - 1)])
+		card.initialize_card(Card_Background[0], 0, 0)
 
 func clear_all_cards(except: CardUI = null):
 	var tw0 = null
