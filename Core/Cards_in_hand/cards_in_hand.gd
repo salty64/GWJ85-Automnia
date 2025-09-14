@@ -4,7 +4,25 @@ class_name Hand
 signal card_played
 signal clear_card_done
 
+const Card_Background = [
+	preload("res://Assets/Cards/greencard.svg"),
+	preload("res://Assets/Cards/redcard.svg")
+]
+
+enum Ids {ChampiHouse}
+enum Cards_Data {Texture, Type, Cost, Score}
+
+const Cards = {
+	Ids.ChampiHouse: {
+		Cards_Data.Texture: preload("res://Assets/champi_maison.png"),
+		Cards_Data.Type: MyGame.building_type.Production,
+		Cards_Data.Cost: 1,
+		Cards_Data.Score: 1
+	}
+}
+
 const CARD = preload("res://Core/Card/Core_Card.tscn")
+
 @export_category("Curves")
 @export var spread_curve: Curve
 @export var height_curve: Curve
@@ -24,12 +42,23 @@ func _ready():
 
 func _process(_delta):
 	pass
+	
+func create_card(id:Ids):
+	var card = CARD.instantiate()
+	add_child(card)
+	
+	var data = Cards[id];
+	
+	card.initialize_card(
+		Card_Background[data[Cards_Data.Type]],
+		data[Cards_Data.Cost],
+		data[Cards_Data.Score],
+		data[Cards_Data.Texture]
+	)
 
 func cards_deck(card_amount: int) -> void:
 	for child_index in range(card_amount):
-		var card = CARD.instantiate()
-		add_child(card)
-		card.initialize_card()
+		create_card(Ids.ChampiHouse)
 
 func clear_all_cards(except: CardUI = null):
 	var tw0 = null

@@ -1,14 +1,13 @@
 class_name CardUI
 extends Control
 
-@onready var hand:Hand = get_parent() 
+@onready var hand:Hand = get_parent()
 @export var rotation_curve : Curve;
-var card_database = preload("res://Core/Deck/cards_database.tres")
 
-@onready var artwork = $Card/Bg 
-@onready var titre = $Card/Bg/VBoxContainer/Name
-@onready var cost = $Card/Bg/VBoxContainer/HBoxContainer/Cost
-@onready var effect =  $Card/Bg/VBoxContainer/HBoxContainer/Effect
+@onready var background = %Background
+@onready var costLabel = %Cost
+@onready var scoreLabel = %Score
+@onready var imageTextureRect = %Image
 
 var parent: Control
 
@@ -20,56 +19,20 @@ var disabled := false
 var card_anime = null
 var card_rotation :float
 
-var card_desc : Card_Desc
-
-
-func _ready():
-	card_anime = get_node("card_anime")
-	$Card/Bg/hover_control.show()
+var zoom_tween:Tween
 
 func animate_to_position(new_position: Vector2, duration: float, new_rotation: float) -> void:
 	tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position", new_position, duration)
 	tween.tween_property(self, "rotation", -new_rotation, duration) #self.rotation = -new_rotation
 
-func initialize_card():
-	card_desc = card_database.card_desc[randi_range(0, card_database.card_desc.size() - 1)]
-	artwork.texture = card_desc.artwork
-	titre.text = card_desc.name
-	cost.text = str(card_desc.cost)
-	effect.text = str(card_desc.effect)
-
-func apply_desc(args):
-	card_desc.apply_desc(args)
-
-func _on_control_mouse_entered():
-	card_anime.play("focus")
-
-func _on_control_mouse_exited():
-	card_anime.play_backwards("focus")
-
-
-func disable_mouse_input():
-	$Card/Bg/hover_control.mouse_filter = MOUSE_FILTER_IGNORE
-	$Card/Bg/hover_control.hide()   # <‑ désactive le node
-
-	
-func enable_mouse_input():
-	$Card/Bg/hover_control.mouse_filter = MOUSE_FILTER_PASS
-	
-
-	
-func _on_collider_input_event(event):
-	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
-			disable_mouse_input()
-			play_card_animation()
-			hand.card_played.emit()
-	else:
-		pass
-
+func initialize_card(card_background:Texture2D, cost:int, score:int, image:Texture2D):
+	background.texture = card_background
+	costLabel.text = str(cost)
+	scoreLabel.text = str(score)
+	imageTextureRect.texture = image
 
 func play_card_animation():
-
 	var viewport_size = get_viewport_rect().size
 
 	# Tween maître
@@ -103,5 +66,29 @@ func play_card_animation():
 					  .set_trans(Tween.TRANS_BACK) \
 					  .set_ease(Tween.EASE_IN)
 	master.tween_callback(Callable(self, "queue_free"))
-	
-	enable_mouse_input()
+
+func _on_mouse_entered() -> void:
+	if is_instance_valid(zoom_tween):
+		zoom_tween.kill()
+		
+	z_index = 1
+		
+	zoom_tween = create_tween()
+	zoom_tween.tween_property(self, "scale", Vector2(2, 2), 0.25)
+
+func _on_mouse_exited() -> void:
+	if is_instance_valid(zoom_tween):
+		zoom_tween.kill()
+		
+	z_index = 0
+		
+	zoom_tween = create_tween()
+	zoom_tween.tween_property(self, "scale", Vector2(1, 1), 0.25)
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
+			mouse_filter = MOUSE_FILTER_IGNORE
+			play_card_animation()
+			hand.card_played.emit()
+	else:
+		pass
