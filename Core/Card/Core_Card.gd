@@ -63,6 +63,7 @@ func _on_collider_input_event(event):
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
 			disable_mouse_input()
 			play_card_animation()
+			hand.card_played.emit()
 	else:
 		pass
 

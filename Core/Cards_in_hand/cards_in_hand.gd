@@ -1,6 +1,7 @@
 extends Control
 class_name Hand
 
+signal card_played
 signal clear_card_done
 
 const CARD = preload("res://Core/Card/Core_Card.tscn")
