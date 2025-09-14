@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cd0jbh4metflb"]
 
-[ext_resource type="Script" path="res://scenes/LoadingScreen/LoadingScreen.gd" id="1_gbk34"]
+[ext_resource type="Script" uid="uid://dkaufew2glsci" path="res://scenes/LoadingScreen/LoadingScreen.gd" id="1_gbk34"]
 
 [sub_resource type="Animation" id="Animation_xbk22"]
 resource_name = "Flash"
@@ -36,8 +36,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pf4xo"]
 _data = {
-"Flash": SubResource("Animation_xbk22"),
-"RESET": SubResource("Animation_2tmr4")
+&"Flash": SubResource("Animation_xbk22"),
+&"RESET": SubResource("Animation_2tmr4")
 }
 
 [node name="LoadingScreen" type="MarginContainer"]

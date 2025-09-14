@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2numvphf2kau"]
 
-[ext_resource type="Script" path="res://scenes/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
-[ext_resource type="Script" path="res://scenes/OptionsMenu/Video/HSliderLabel.gd" id="2_68rjp"]
+[ext_resource type="Script" uid="uid://bo1duuyoki44j" path="res://scenes/OptionsMenu/Video/VideoOptionsMenu.gd" id="1"]
+[ext_resource type="Script" uid="uid://cio4c0mj52dyh" path="res://scenes/OptionsMenu/Video/HSliderLabel.gd" id="2_68rjp"]
 
 [node name="VideoOptionsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
