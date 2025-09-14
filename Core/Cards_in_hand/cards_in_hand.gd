@@ -9,6 +9,17 @@ const Card_Background = [
 	preload("res://Assets/Cards/redcard.svg")
 ]
 
+enum Ids {ChampiHouse}
+enum Cards_Data {Type, Cost, Score}
+
+const Cards = {
+	Ids.ChampiHouse: {
+		Cards_Data.Type: MyGame.building_type.Production,
+		Cards_Data.Cost: 1,
+		Cards_Data.Score: 1
+	}
+}
+
 const CARD = preload("res://Core/Card/Core_Card.tscn")
 
 @export_category("Curves")
@@ -31,14 +42,21 @@ func _ready():
 func _process(_delta):
 	pass
 	
-func create_card(building_type:MyGame.building_type, cost:int, score:int):
+func create_card(id:Ids):
 	var card = CARD.instantiate()
 	add_child(card)
-	card.initialize_card(Card_Background[building_type], cost, score)
+	
+	var data = Cards[id];
+	
+	card.initialize_card(
+		Card_Background[data[Cards_Data.Type]],
+		data[Cards_Data.Cost],
+		data[Cards_Data.Score]
+	)
 
 func cards_deck(card_amount: int) -> void:
 	for child_index in range(card_amount):
-		create_card(MyGame.building_type.Production, 1, 1)
+		create_card(Ids.ChampiHouse)
 
 func clear_all_cards(except: CardUI = null):
 	var tw0 = null
