@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ow10mhmpv7ef"]
 
-[ext_resource type="Script" path="res://Core/Cards_in_hand/cards_in_hand.gd" id="1"]
+[ext_resource type="Script" uid="uid://ckm1a7yk17cgo" path="res://Core/Cards_in_hand/cards_in_hand.gd" id="1"]
 [ext_resource type="Curve" uid="uid://d21xwh1sto2ec" path="res://Core/Curves/Rotation_Curve.tres" id="2"]
 [ext_resource type="Curve" uid="uid://du3h5uubydmns" path="res://Core/Curves/Height_Curve.tres" id="3"]
 [ext_resource type="Curve" uid="uid://b3rwhmmpcrvwi" path="res://Core/Curves/Angle_Curve.tres" id="4"]

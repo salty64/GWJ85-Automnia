@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0w163uxufsvm"]
 
-[ext_resource type="Script" path="res://addons/rakugo_game_template/Autoloads/Transitions/transitions.gd" id="1_8b6dk"]
-[ext_resource type="Shader" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Circle_mask.gdshader" id="2_ny2pu"]
-[ext_resource type="Shader" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Diamond.gdshader" id="2_tr0bf"]
-[ext_resource type="Shader" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Swipe_Mask.gdshader" id="3_awxqb"]
-[ext_resource type="Shader" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Line.gdshader" id="3_c1nbg"]
-[ext_resource type="Shader" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Square_mask.gdshader" id="3_lbhk2"]
+[ext_resource type="Script" uid="uid://syu46jq34kbp" path="res://addons/rakugo_game_template/Autoloads/Transitions/transitions.gd" id="1_8b6dk"]
+[ext_resource type="Shader" uid="uid://biugidinxtts6" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Circle_mask.gdshader" id="2_ny2pu"]
+[ext_resource type="Shader" uid="uid://dh4u0txflmg3s" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Diamond.gdshader" id="2_tr0bf"]
+[ext_resource type="Shader" uid="uid://dsogs63eu8rj2" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Swipe_Mask.gdshader" id="3_awxqb"]
+[ext_resource type="Shader" uid="uid://dq5vew3di4078" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Line.gdshader" id="3_c1nbg"]
+[ext_resource type="Shader" uid="uid://dokqbu3b86gcg" path="res://addons/rakugo_game_template/Autoloads/Transitions/Shaders/Square_mask.gdshader" id="3_lbhk2"]
 
 [sub_resource type="Animation" id="Animation_oogso"]
 resource_name = "Circle"
@@ -339,12 +339,12 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_npcpa"]
 _data = {
-"Circle": SubResource("Animation_oogso"),
-"Diamond": SubResource("Animation_rcjvv"),
-"Line": SubResource("Animation_h4jg3"),
-"RESET": SubResource("Animation_gf7i0"),
-"Square": SubResource("Animation_xwrao"),
-"Swipe": SubResource("Animation_x0cy3")
+&"Circle": SubResource("Animation_oogso"),
+&"Diamond": SubResource("Animation_rcjvv"),
+&"Line": SubResource("Animation_h4jg3"),
+&"RESET": SubResource("Animation_gf7i0"),
+&"Square": SubResource("Animation_xwrao"),
+&"Swipe": SubResource("Animation_x0cy3")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ka8ix"]
