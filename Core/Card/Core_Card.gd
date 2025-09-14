@@ -3,7 +3,6 @@ extends Control
 
 @onready var hand:Hand = get_parent() 
 @export var rotation_curve : Curve;
-var card_database = preload("res://Core/Deck/cards_database.tres")
 
 @onready var artwork = $Card/Bg 
 @onready var titre = $Card/Bg/VBoxContainer/Name
@@ -20,7 +19,7 @@ var disabled := false
 var card_anime = null
 var card_rotation :float
 
-var card_desc : Card_Desc
+var m_card_desc : Card_Desc
 
 
 func _ready():
@@ -32,15 +31,12 @@ func animate_to_position(new_position: Vector2, duration: float, new_rotation: f
 	tween.tween_property(self, "global_position", new_position, duration)
 	tween.tween_property(self, "rotation", -new_rotation, duration) #self.rotation = -new_rotation
 
-func initialize_card():
-	card_desc = card_database.card_desc[randi_range(0, card_database.card_desc.size() - 1)]
-	artwork.texture = card_desc.artwork
-	titre.text = card_desc.name
-	cost.text = str(card_desc.cost)
-	effect.text = str(card_desc.effect)
-
-func apply_desc(args):
-	card_desc.apply_desc(args)
+func initialize_card(card_desc:Card_Desc):
+	m_card_desc = card_desc
+	artwork.texture = m_card_desc.artwork
+	titre.text = m_card_desc.name
+	cost.text = str(m_card_desc.cost)
+	effect.text = str(m_card_desc.effect)
 
 func _on_control_mouse_entered():
 	card_anime.play("focus")
