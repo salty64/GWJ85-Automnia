@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=11 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://h2tivxxvkfid" path="res://scenes/Game/myGame.gd" id="1_1p5ji"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="6_5734q"]
 [ext_resource type="Script" uid="uid://dbwubktiqgxsf" path="res://scenes/Game/control.gd" id="7_dxsly"]
 [ext_resource type="Script" uid="uid://cv32t48s5fjhe" path="res://scenes/Game/map.gd" id="8_1p5ji"]
+[ext_resource type="AudioStream" uid="uid://dyblbq7qec357" path="res://Assets/SFX/card-slide-1.ogg" id="9_ph5vl"]
+[ext_resource type="AudioStream" uid="uid://dkdwqfrqsy333" path="res://Assets/SFX/card-slide-7.ogg" id="10_5rpqn"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_1p5ji")
@@ -102,6 +104,12 @@ script = ExtResource("8_1p5ji")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="AudioStreamPlayer_drawing_card" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ph5vl")
+
+[node name="AudioStreamPlayer_removing_card" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_5rpqn")
+
 [connection signal="ask_to_save" from="GUI/PauseMenu" to="." method="_on_pause_menu_ask_to_save"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button3" to="GUI/Control" method="_on_button_3_pressed"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button4" to="GUI/Control" method="_on_button_4_pressed"]
@@ -110,3 +118,5 @@ script = ExtResource("8_1p5ji")
 [connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/WinButton" to="." method="_on_win"]
 [connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/LooseButton" to="." method="_on_gameover"]
 [connection signal="card_played" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_card_played"]
+[connection signal="drawing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_drawing_card"]
+[connection signal="removing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_removing_card"]

@@ -4,6 +4,9 @@ class_name Hand
 signal card_played
 signal clear_card_done
 
+signal drawing_card
+signal removing_card
+
 const Card_Background = [
 	preload("res://Assets/Cards/greencard.svg"),
 	preload("res://Assets/Cards/redcard.svg")
@@ -59,6 +62,7 @@ func create_card(id:Ids):
 func cards_deck(card_amount: int) -> void:
 	for child_index in range(card_amount):
 		create_card(Ids.ChampiHouse)
+		
 
 func clear_all_cards(except: CardUI = null):
 	var tw0 = null
@@ -67,12 +71,13 @@ func clear_all_cards(except: CardUI = null):
 	for card in childrens:
 		
 		if card is CardUI and card != except:
-			tw0.chain().tween_property(card, "scale", Vector2.ZERO, 0.3) \
+			
+			tw0.chain().tween_property(card, "scale", Vector2.ZERO, 0.5) \
 			  .set_trans(Tween.TRANS_BACK) \
 			  .set_ease(Tween.EASE_IN)
 			tw0.chain().tween_callback(Callable(self, "remove_child").bind(card))
 			tw0.chain().tween_callback(Callable(card, "queue_free"))
-	
+			tw0.chain().tween_callback(emit_removing_card)
 	
 	if childrens : 
 		await tw0.finished
@@ -81,12 +86,16 @@ func clear_all_cards(except: CardUI = null):
 	
 
 func emit_card_done():
-	print(name)
 	emit_signal("clear_card_done")
-	
-	
+
+func emit_removing_card():
+	removing_card.emit()
+
+func emit_drawing_card():
+	drawing_card.emit()
+
 func calculate_position(card: CardUI) -> Vector2:
-	var bottom_offset = get_viewport_rect().size.y / 6
+	var bottom_offset = get_viewport_rect().size.y / 30
 	var y_position = get_viewport_rect().size.y - bottom_offset - card.get_rect().size.y
 
 	return Vector2(
@@ -123,6 +132,8 @@ func rearrange_cards() -> void:
 		var new_rotation = calculate_rotation(hand_ratio, hand_params[1])
 
 		card.animate_to_position(destination, ANIMATION_DURATION, new_rotation)
+		
+		emit_drawing_card()
 
 func calculate_hand_parameters(child_count: int) -> Vector3:
 	if child_count == 2:
