@@ -54,10 +54,14 @@ func _on_mouse_exited() -> void:
 	zoom_tween = create_tween()
 	zoom_tween.tween_property(self, "scale", Vector2(1, 1), 0.25)
 
+func disable_card():
+	card.mouse_filter = MOUSE_FILTER_IGNORE
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
-			card.mouse_filter = MOUSE_FILTER_IGNORE
+			disable_card()
 			play_card_animation()
+			hand.clear_all_cards(self)
 			hand.card_played.emit()
 	else:
 		pass

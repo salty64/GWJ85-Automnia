@@ -97,23 +97,23 @@ func create_card(id:Ids, pos:Vector2, anglerect:float):
 	)
 
 func clear_all_cards(except: CardUI = null):
-	var tw0 = null
+	var tw0:Tween = null
 	var childrens = get_children()
 	if childrens: tw0 = create_tween()
 	for card in childrens:
-		
 		if card is CardUI and card != except:
+			card.disable_card()
 			
+			tw0.tween_callback(emit_removing_card)
+			tw0.tween_interval(0.2)
 			tw0.chain().tween_property(card, "scale", Vector2.ZERO, 0.5) \
 			  .set_trans(Tween.TRANS_BACK) \
 			  .set_ease(Tween.EASE_IN)
 			tw0.chain().tween_callback(Callable(self, "remove_child").bind(card))
 			tw0.chain().tween_callback(Callable(card, "queue_free"))
-			tw0.chain().tween_callback(emit_removing_card)
 	
 	if childrens : 
 		await tw0.finished
-		print(name)
 		clear_card_done.emit()
 
 func emit_card_done():
