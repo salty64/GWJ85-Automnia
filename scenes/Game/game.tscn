@@ -91,6 +91,27 @@ layout_mode = 2
 text = "Loose"
 
 [node name="Cards_in_hand" parent="GUI" instance=ExtResource("6_5734q")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Control2" type="Control" parent="GUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Control2"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 20)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="PauseChecker" type="Sprite2D" parent="."]
 visible = false

@@ -39,10 +39,71 @@ var rot_angle: int = 15
 const ANIMATION_DURATION: float = 0.2
 var mouse_pos: float
 
+
+
+#CARD SIZE
+const RECT_W := 150
+const RECT_H := 200
+const ARC_RATIO := 0.8 #pourcentage de la largeur ecran
+
+#const N := 8 # entre 3 et 6
+
+
+
 func _ready():
 	cards_deck(5)
-	rearrange_cards()
+	#rearrange_cards()
+	#draw_card()
+	create_blue_card(0,0,0)
+	pass
+	
+	
+func draw_card(N:int):
+	
+	var ARC_OPENING_DEG := N * 7 #angle de eventail
+	var cam : Camera2D = get_parent().get_parent().get_node("Camera2D")
+	var vp_size : Vector2 = get_viewport().size
+	var zoom_factor : float = cam.zoom.x   # assume uniform zoom
+	var visible_in_units : Vector2 = vp_size / zoom_factor
+	print("Viewport (px):", vp_size)
+	print("Visible area (world units):", visible_in_units)
+	
+	var SURFACE_W = vp_size.x
+	var SURFACE_H = vp_size.y
 
+	var Cx = 0
+	var Cy = +420 #SURFACE_H - 600  # centre du cercle placé en dessous de l’écran
+	var R = (SURFACE_W * ARC_RATIO) / 2.0
+	var angle_span = deg_to_rad(ARC_OPENING_DEG)
+	var angle_start = -angle_span / 2.0
+#	var angle_end = +angle_span / 2.0
+	var offset = -PI/2   # -> 0 rad = axe -Y
+	
+
+	for i in range(N):
+		var angle = offset + angle_start + i * (angle_span / float(N - 1))
+		var cx = Cx + R * cos(angle)
+		var cy = Cy + R * sin(angle)
+		var P_rect = Vector2(cx, cy)
+		var P_arc = Vector2(Cx, Cy)  # centre du cercle
+		var v = P_arc - P_rect
+		var anglerect = Vector2(0, -1).angle_to(v)
+		create_blue_card(cx,cy,anglerect)
+
+func create_blue_card(cx:float,cy:float,anglerect:float):
+	var home = Control.new()
+	home.position=Vector2(cx,cy)
+	var rect = ColorRect.new()
+	rect.color = Color(0.3, 0.6, 1.0, 0.8)
+	rect.size = Vector2(RECT_W, RECT_H)
+	rect.pivot_offset = rect.size / 2.0
+	rect.position = Vector2(-RECT_W/2, -RECT_H/2)
+	print ("coord Carte: X=",cx,"Y=",cy)
+	rect.rotation = anglerect
+	home.add_child(rect)
+
+	add_child(home)
+	
 func _process(_delta):
 	pass
 	
@@ -60,8 +121,9 @@ func create_card(id:Ids):
 	)
 
 func cards_deck(card_amount: int) -> void:
-	for child_index in range(card_amount):
-		create_card(Ids.ChampiHouse)
+	draw_card(card_amount)
+	#for child_index in range(card_amount):
+		#create_card(Ids.ChampiHouse)
 		
 
 func clear_all_cards(except: CardUI = null):
