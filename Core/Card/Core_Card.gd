@@ -37,42 +37,34 @@ func play_card_animation():
 
 	# Tween maître
 	var master = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
+	var center_pos = Vector2(viewport_size.x / 2, viewport_size.y / 2)
 	# carte jouée : monte puis zoom
-	var up_pos = global_position - Vector2(0, 200) # monte de 50 pixels
-	master.tween_property(self, "global_position", up_pos, 0.2)
-	master.tween_property(self, "scale", Vector2.ONE * 2, 0.1)  # ajuster le zoom si besoin
-	#master.tween_interval(0.08)
+	#var up_pos = global_position #- Vector2(0, 200) 
+	master.tween_property(self, "position", Vector2.ZERO, 0.2)
+	#master.tween_property(self, "scale", Vector2.ONE * 2, 0.1)  # ajuster le zoom si besoin
 
-	## animer les autres cartes (scale -> 0) et les queue_free
-	#if hand:
-		#for card in hand.get_children():
-			#if card is CardUI and card != self:
-				#master.tween_property(card, "scale", Vector2.ZERO, 0.2) \
+
+	#hand.clear_all_cards(self)
+#
+	### centrage er redressage de la carte
+	
+	#master.chain().tween_property(self, "global_position", center_pos, 0.1)
+	#master.tween_property(self, "rotation_degrees", 0, 0.1)
+	#master.tween_property(self, "scale", Vector2.ONE * 3, 0.1)  
+	#$AudioStreamPlayer_play.play()
+	### zoom out et suppression
+	#master.chain().tween_property(self, "global_position", center_pos- Vector2(0, 100), 0.1)
+	#master.tween_property(self, "scale", Vector2.ONE * 0.2, 0.2) \
 					  #.set_trans(Tween.TRANS_BACK) \
 					  #.set_ease(Tween.EASE_IN)
-				#master.tween_callback(Callable(card, "queue_free"))
-	hand.clear_all_cards(self)
-
-	## centrage er redressage de la carte
-	var center_pos = Vector2(viewport_size.x / 2 - size.x / 2, viewport_size.y / 2 - size.y / 2)
-	master.tween_property(self, "global_position", center_pos, 0.1)
-	master.tween_property(self, "rotation_degrees", 0, 0.1)
-	master.tween_property(self, "scale", Vector2.ONE * 3, 0.1)  # ajuster le zoom si besoin
-
-	## zoom out et suppression
-	master.tween_property(self, "global_position", center_pos- Vector2(0, 100), 0.1)
-	master.tween_property(self, "scale", Vector2.ONE * 0.2, 0.2) \
-					  .set_trans(Tween.TRANS_BACK) \
-					  .set_ease(Tween.EASE_IN)
-	master.tween_callback(Callable(self, "queue_free"))
+	#master.tween_callback(Callable(self, "queue_free"))
 
 func _on_mouse_entered() -> void:
 	if is_instance_valid(zoom_tween):
 		zoom_tween.kill()
 		
 	z_index = 1
-		
+	$AudioStreamPlayer_hover.play()
 	zoom_tween = create_tween()
 	zoom_tween.tween_property(self, "scale", Vector2(2, 2), 0.25)
 

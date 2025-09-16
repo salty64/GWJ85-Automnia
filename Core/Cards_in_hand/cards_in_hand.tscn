@@ -7,7 +7,13 @@
 
 [node name="Cards_in_hand" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("1")
 spread_curve = ExtResource("2")
 height_curve = ExtResource("3")
