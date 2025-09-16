@@ -54,7 +54,7 @@ func _ready():
 	cards_deck(5)
 	#rearrange_cards()
 	#draw_card()
-	create_blue_card(0,0,0)
+	#create_blue_card(0,0,0)
 	pass
 	
 	
@@ -87,8 +87,8 @@ func draw_card(N:int):
 		var P_rect = Vector2(cx, cy)
 		var P_arc = Vector2(Cx, Cy)  # centre du cercle
 		var v = P_arc - P_rect
-		var anglerect = Vector2(0, -1).angle_to(v)
-		create_blue_card(cx,cy,anglerect)
+		var anglerect = Vector2(0, 1).angle_to(v)
+		create_card(Ids.ChampiHouse,Vector2(cx,cy),anglerect)
 
 func create_blue_card(cx:float,cy:float,anglerect:float):
 	var home = Control.new()
@@ -107,8 +107,10 @@ func create_blue_card(cx:float,cy:float,anglerect:float):
 func _process(_delta):
 	pass
 	
-func create_card(id:Ids):
+func create_card(id:Ids, pos:Vector2, anglerect:float):
 	var card = CARD.instantiate()
+	card.position = pos
+	card.rotation = anglerect
 	add_child(card)
 	
 	var data = Cards[id];
