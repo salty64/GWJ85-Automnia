@@ -5,8 +5,7 @@ extends Control
 func _on_button_3_pressed() -> void:
 	hand.clear_all_cards()
 	await hand.clear_card_done
-	hand.cards_deck(3)
-	hand.rearrange_cards()
+	hand.draw_card(3)
 
 	pass # Replace with function body.
 
@@ -14,18 +13,15 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
 	hand.clear_all_cards()
 	await hand.clear_card_done
-	hand.cards_deck(4)
-	hand.rearrange_cards()
+	hand.draw_card(4)
 	pass # Replace with function body.
 
 
 func _on_button_5_pressed() -> void:
-	hand.cards_deck(5)
-	hand.rearrange_cards()
+	hand.draw_card(5)
 	pass # Replace with function body.
 
 
 func _on_button_6_pressed() -> void:
-	hand.cards_deck(1)
-	hand.rearrange_cards()
+	hand.draw_card(1)
 	pass # Replace with function body.
