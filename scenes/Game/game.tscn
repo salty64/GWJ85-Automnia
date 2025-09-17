@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=14 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://h2tivxxvkfid" path="res://scenes/Game/myGame.gd" id="1_1p5ji"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
+[ext_resource type="Script" uid="uid://b7f7tiwybdt0b" path="res://scenes/Game/gui.gd" id="2_yvoo5"]
 [ext_resource type="Texture2D" uid="uid://d1vim68285syu" path="res://icon.svg" id="3_6luik"]
+[ext_resource type="Texture2D" uid="uid://q4syw05vfvfw" path="res://Assets/Background_Artwork.png" id="3_y7cus"]
 [ext_resource type="PackedScene" uid="uid://cp3p3kqcjh0me" path="res://scenes/EndMenu/EndMenu.tscn" id="3_yfekm"]
 [ext_resource type="Script" uid="uid://gfgjfmgyujtv" path="res://scenes/Game/Sprite2D.gd" id="4_lltyx"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="6_5734q"]
@@ -15,7 +17,21 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_1p5ji")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_y7cus")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("2_yvoo5")
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("2_hcope")]
 unique_name_in_owner = true
@@ -92,6 +108,7 @@ layout_mode = 2
 text = "Loose"
 
 [node name="Cards_in_hand" parent="GUI" instance=ExtResource("6_5734q")]
+unique_name_in_owner = true
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -114,6 +131,19 @@ pivot_offset = Vector2(20, 20)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="ScoreLabel" type="Label" parent="GUI"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseChecker" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(637, 143)
@@ -122,6 +152,7 @@ script = ExtResource("4_lltyx")
 
 [node name="Map" type="Node2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 script = ExtResource("8_1p5ji")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -143,5 +174,7 @@ volume_db = -15.0
 [connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/WinButton" to="." method="_on_win"]
 [connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/LooseButton" to="." method="_on_gameover"]
 [connection signal="card_played" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_card_played"]
+[connection signal="clear_card_done" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_clear_card_done"]
 [connection signal="drawing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_drawing_card"]
+[connection signal="hover_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_hover_card"]
 [connection signal="removing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_removing_card"]
