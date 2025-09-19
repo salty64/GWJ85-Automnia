@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=12 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://h2tivxxvkfid" path="res://scenes/Game/myGame.gd" id="1_1p5ji"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cv32t48s5fjhe" path="res://scenes/Game/map.gd" id="8_1p5ji"]
 [ext_resource type="AudioStream" uid="uid://dyblbq7qec357" path="res://Assets/SFX/card-slide-1.ogg" id="9_ph5vl"]
 [ext_resource type="AudioStream" uid="uid://dkdwqfrqsy333" path="res://Assets/SFX/card-slide-7.ogg" id="10_5rpqn"]
+[ext_resource type="PackedScene" uid="uid://dwiuh7v3wnrxi" path="res://scenes/Game/fallen_leaves.tscn" id="11_5rpqn"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_1p5ji")
@@ -130,6 +131,8 @@ stream = ExtResource("9_ph5vl")
 
 [node name="AudioStreamPlayer_removing_card" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_5rpqn")
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("11_5rpqn")]
 
 [connection signal="ask_to_save" from="GUI/PauseMenu" to="." method="_on_pause_menu_ask_to_save"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button3" to="GUI/Control" method="_on_button_3_pressed"]

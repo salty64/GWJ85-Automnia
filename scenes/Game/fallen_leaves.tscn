@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwiuh7v3wnrxi"]
+
+[ext_resource type="Texture2D" uid="uid://c6uqy6u3hxqxw" path="res://Assets/fallen-leaves.png" id="1_1mppn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oy0qi"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bfo1e"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 360, 1)
+angle_min = -246.1
+angle_max = 101.4
+initial_velocity_max = 98.95
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 50.0
+gravity = Vector3(0, 10, 0)
+scale_max = 3.0
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_oy0qi")
+amount = 100
+texture = ExtResource("1_1mppn")
+lifetime = 3.0
+visibility_rect = Rect2(-640, -360, 1280, 720)
+process_material = SubResource("ParticleProcessMaterial_bfo1e")
