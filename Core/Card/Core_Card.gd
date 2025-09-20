@@ -8,14 +8,15 @@ extends Control
 @onready var costLabel = %Cost
 @onready var scoreLabel = %Score
 @onready var imageTextureRect = %Image
+@onready var nameLabel = %Name
 
 var zoom_tween:Tween
 
-func initialize_card(card_background:Texture2D, cost:int, score:int, image:Texture2D):
+func initialize_card(card_background:Texture2D, cost:int, score:int, id:int):
 	background.texture = card_background
 	costLabel.text = str(cost)
 	scoreLabel.text = str(score)
-	imageTextureRect.texture = image
+	nameLabel.text = str(id)
 
 func play_card_animation():
 	var viewport_size = get_viewport_rect().size

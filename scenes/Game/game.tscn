@@ -91,6 +91,7 @@ layout_mode = 2
 text = "Loose"
 
 [node name="Cards_in_hand" parent="GUI" instance=ExtResource("6_5734q")]
+unique_name_in_owner = true
 size_flags_horizontal = 4
 size_flags_vertical = 4
 

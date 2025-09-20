@@ -12,13 +12,11 @@ const Card_Background = [
 	preload("res://Assets/Cards/redcard.svg")
 ]
 
-enum Ids {ChampiHouse}
-enum Cards_Data {Texture, Type, Cost, Score}
+enum Cards_Data {Texture, Cost, Score}
 
 const Cards = {
-	Ids.ChampiHouse: {
+	MyGame.Ids.bigMushroom: {
 		Cards_Data.Texture: preload("res://Assets/champi_maison.png"),
-		Cards_Data.Type: MyGame.building_type.Production,
 		Cards_Data.Cost: 1,
 		Cards_Data.Score: 1
 	}
@@ -42,13 +40,11 @@ const ANIMATION_DURATION: float = 0.2
 const RECT_W := 150
 const RECT_H := 200
 const ARC_RATIO := 0.8 #pourcentage de la largeur ecran
-
-func _ready():
-	draw_card(5)
-	pass
 	
-func draw_card(N:int):
-	var ARC_OPENING_DEG := N * 7 #angle de eventail
+func draw_card(array:PackedByteArray):
+	var array_size = array.size()
+	
+	var ARC_OPENING_DEG:int = array_size * 7 #angle de eventail
 	var cam : Camera2D = get_parent().get_parent().get_node("Camera2D")
 	var vp_size : Vector2 = get_viewport().size
 	var zoom_factor : float = cam.zoom.x   # assume uniform zoom
@@ -68,32 +64,30 @@ func draw_card(N:int):
 	var offset = -PI/2   # -> 0 rad = axe -Y
 	
 
-	for i in range(N):
-		var angle = offset + angle_start + i * (angle_span / float(N - 1))
+	for i in array_size:
+		var angle = offset + angle_start + i * (angle_span / float(array_size - 1))
 		var cx = Cx + R * cos(angle)
 		var cy = Cy + R * sin(angle)
 		var P_rect = Vector2(cx, cy)
 		var P_arc = Vector2(Cx, Cy)  # centre du cercle
 		var v = P_arc - P_rect
 		var anglerect = Vector2(0, 1).angle_to(v)
-		create_card(Ids.ChampiHouse,Vector2(cx,cy),anglerect)
+		create_card(array[i],Vector2(cx,cy),anglerect)
 	
 func _process(_delta):
 	pass
 	
-func create_card(id:Ids, pos:Vector2, anglerect:float):
+func create_card(id:MyGame.Ids, pos:Vector2, anglerect:float):
 	var card = CARD.instantiate()
 	card.position = pos
 	card.rotation = anglerect
 	add_child(card)
 	
-	var data = Cards[id];
-	
 	card.initialize_card(
-		Card_Background[data[Cards_Data.Type]],
-		data[Cards_Data.Cost],
-		data[Cards_Data.Score],
-		data[Cards_Data.Texture]
+		Card_Background[0],
+		0,
+		0,
+		id
 	)
 
 func clear_all_cards(except: CardUI = null):
