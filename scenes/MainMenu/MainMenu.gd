@@ -35,7 +35,7 @@ func _ready():
 	else:
 		confirm_popup.get_ok_button().pressed.connect(_on_exit_confirmed)
 		
-	%VersionNumber.text = "version : " + str(ProjectSettings.get_setting("application/config/version", ""))
+	%VersionNumber.text = "Version : " + str(ProjectSettings.get_setting("application/config/version", ""))
 	
 	if RGT_Globals.loading_scene_setting.is_empty():
 		play_button.hide()

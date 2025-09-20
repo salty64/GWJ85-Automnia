@@ -359,7 +359,7 @@ script = ExtResource("1_8b6dk")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_npcpa")
+&"": SubResource("AnimationLibrary_npcpa")
 }
 
 [node name="StopMouse" type="Control" parent="."]
