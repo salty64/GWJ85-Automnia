@@ -25,23 +25,29 @@ enum Ids {
 var current_cards:Dictionary
 
 func _ready() -> void:
+	var n_cards = 5
+	
+	map.add_new_rectangle_pts()
+	
+	var array_random_pos = map.get_n_random_pos(n_cards)
+	
 	var array:PackedByteArray
 	
 	for i in range(15):
 		array.append(i)
-		
-	var out_array:PackedByteArray
 	
 	var index = 0
 	
-	for i in range(5):
+	for i in n_cards:
 		index = randi_range(0, array.size() - 1)
 		
-		out_array.append(array[index])
+		var card_id = array[index]
+		
+		current_cards[card_id] = array_random_pos[i]
 		
 		array.remove_at(index)
 	
-	card_in_hand.draw_card(out_array)
+	card_in_hand.draw_card(current_cards.keys())
 
 func _on_cards_in_hand_card_played() -> void:
 	map.add_new_building_randomly()
