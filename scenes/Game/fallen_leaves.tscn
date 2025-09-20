@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwiuh7v3wnrxi"]
+[gd_scene load_steps=5 format=3 uid="uid://ddgm18ec6wbnu"]
 
-[ext_resource type="Texture2D" uid="uid://c6uqy6u3hxqxw" path="res://Assets/fallen-leaves.png" id="1_1mppn"]
+[ext_resource type="Texture2D" uid="uid://le44uwhc6j7" path="res://Assets/fallen_leaves.svg" id="1_1mppn"]
+[ext_resource type="Script" uid="uid://c7lvsvu7r63ts" path="res://scenes/Game/fallen_leaves.gd" id="1_o66kr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oy0qi"]
 particles_animation = true
-particles_anim_h_frames = 16
-particles_anim_v_frames = 5
+particles_anim_h_frames = 12
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bfo1e"]
@@ -23,10 +24,14 @@ hue_variation_min = -0.09
 hue_variation_max = 0.18
 anim_offset_max = 1.0
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="Fallen_leaves" type="Node2D"]
+script = ExtResource("1_o66kr")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_oy0qi")
+position = Vector2(640, 360)
 amount = 100
 texture = ExtResource("1_1mppn")
 lifetime = 3.0
-visibility_rect = Rect2(-640, -360, 1280, 720)
+visibility_rect = Rect2(0, 0, 0, 0)
 process_material = SubResource("ParticleProcessMaterial_bfo1e")

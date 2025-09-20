@@ -8,7 +8,7 @@
 [ext_resource type="FontFile" uid="uid://chkiynvnut1fn" path="res://Assets/Fonts/Magiera Script.ttf" id="4_y5ja3"]
 [ext_resource type="PackedScene" uid="uid://choevp6ilq78t" path="res://scenes/LoadSaveMenu/loadSaveMenu.tscn" id="5_mfpq2"]
 [ext_resource type="PackedScene" uid="uid://djnvp4x64ukay" path="res://scenes/OptionsMenu/OptionsContainer.tscn" id="6_ky335"]
-[ext_resource type="PackedScene" uid="uid://dwiuh7v3wnrxi" path="res://scenes/Game/fallen_leaves.tscn" id="9_y5ja3"]
+[ext_resource type="PackedScene" uid="uid://ddgm18ec6wbnu" path="res://scenes/Game/fallen_leaves.tscn" id="9_y5ja3"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -178,8 +178,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 dialog_text = "Quit the Game ?"
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("9_y5ja3")]
-position = Vector2(640, 360)
+[node name="Fallen_leaves" parent="." instance=ExtResource("9_y5ja3")]
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MenuButtons/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
