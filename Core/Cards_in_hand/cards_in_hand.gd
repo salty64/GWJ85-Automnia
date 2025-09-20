@@ -48,6 +48,7 @@ func _ready():
 	pass
 	
 func draw_card(N:int):
+	drawing_card.emit()
 	var ARC_OPENING_DEG := N * 7 #angle de eventail
 	var cam : Camera2D = get_parent().get_parent().get_node("Camera2D")
 	var vp_size : Vector2 = get_viewport().size

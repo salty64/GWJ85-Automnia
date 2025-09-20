@@ -30,7 +30,6 @@ func play_card_animation():
 	master.tween_property(self, "position", Vector2(0, -viewport_size.y / 2), 0.3)
 	master.tween_property(self, "rotation_degrees", 0, 0.2)
 	master.tween_property(self, "scale", Vector2(3, 3), 0.2)
-	print("zoom play card:", Vector2(3, 3))
 	
 	
 	$AudioStreamPlayer_play.play()
