@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc37235kj4384"]
+[gd_scene load_steps=4 format=3 uid="uid://cc37235kj4384"]
 
 [ext_resource type="Script" uid="uid://dmaj8f5hprtu7" path="res://addons/rakugo_game_template/Autoloads/UISoundManager/UISoundManager.gd" id="1_a0e5f"]
+[ext_resource type="AudioStream" uid="uid://b4e8ld33p2ef6" path="res://Assets/SFX/chip-lay-2.ogg" id="2_flvaa"]
+[ext_resource type="AudioStream" uid="uid://bnircgt5uxefv" path="res://Assets/SFX/chips-collide-1.ogg" id="3_f5bpn"]
 
 [node name="UISoundManager" type="Node"]
 script = ExtResource("1_a0e5f")
+audio_streams_pressed = Array[AudioStream]([ExtResource("3_f5bpn")])
+audio_streams_hovered = Array[AudioStream]([ExtResource("2_flvaa")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

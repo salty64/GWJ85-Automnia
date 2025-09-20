@@ -9,6 +9,8 @@ extends Control
 @onready var scoreLabel = %Score
 @onready var imageTextureRect = %Image
 
+var is_played:bool=false
+
 var zoom_tween:Tween
 
 func initialize_card(card_background:Texture2D, cost:int, score:int, image:Texture2D):
@@ -24,9 +26,11 @@ func play_card_animation():
 	var master = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	## centrage et redressage de la carte
+	z_index = 2
 	master.tween_property(self, "position", Vector2(0, -viewport_size.y / 2), 0.3)
 	master.tween_property(self, "rotation_degrees", 0, 0.2)
-	master.tween_property(self, "scale", Vector2.ONE * 2.5, 0.2)
+	master.tween_property(self, "scale", Vector2(3, 3), 0.2)
+	
 	
 	$AudioStreamPlayer_play.play()
 	
@@ -35,6 +39,7 @@ func play_card_animation():
 					  .set_trans(Tween.TRANS_BACK) \
 					  .set_ease(Tween.EASE_IN)
 	master.tween_callback(Callable(self, "queue_free"))
+	
 
 func _on_mouse_entered() -> void:
 	if is_instance_valid(zoom_tween):
@@ -44,24 +49,27 @@ func _on_mouse_entered() -> void:
 	$AudioStreamPlayer_hover.play()
 	zoom_tween = create_tween()
 	zoom_tween.tween_property(self, "scale", Vector2(2, 2), 0.25)
+	
 
 func _on_mouse_exited() -> void:
 	if is_instance_valid(zoom_tween):
 		zoom_tween.kill()
 		
 	z_index = 0
+	if !is_played:
+		zoom_tween = create_tween()
+		zoom_tween.tween_property(self, "scale", Vector2(1, 1), 0.25)
 		
-	zoom_tween = create_tween()
-	zoom_tween.tween_property(self, "scale", Vector2(1, 1), 0.25)
 
 func disable_card():
 	card.mouse_filter = MOUSE_FILTER_IGNORE
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action("select_card") and event.is_pressed() and not event.is_echo():
-			disable_card()
-			play_card_animation()
-			hand.clear_all_cards(self)
-			hand.card_played.emit()
+		is_played = true
+		disable_card()
+		play_card_animation()
+		hand.clear_all_cards(self)
+		hand.card_played.emit()
 	else:
 		pass
