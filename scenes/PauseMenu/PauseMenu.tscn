@@ -61,6 +61,7 @@ text = "Resume"
 
 [node name="SaveButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtons"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(128, 40)
 layout_mode = 2
 text = "Save"

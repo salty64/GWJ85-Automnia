@@ -120,6 +120,7 @@ alignment = 0
 
 [node name="LoadButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/MenuButtons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Load"
 alignment = 0
