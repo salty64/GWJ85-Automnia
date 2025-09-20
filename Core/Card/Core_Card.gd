@@ -24,9 +24,11 @@ func play_card_animation():
 	var master = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	## centrage et redressage de la carte
+	z_index = 2
 	master.tween_property(self, "position", Vector2(0, -viewport_size.y / 2), 0.3)
 	master.tween_property(self, "rotation_degrees", 0, 0.2)
-	master.tween_property(self, "scale", Vector2.ONE * 2.5, 0.2)
+	master.tween_property(self, "scale", Vector2(3, 3), 0.2)
+	
 	
 	$AudioStreamPlayer_play.play()
 	

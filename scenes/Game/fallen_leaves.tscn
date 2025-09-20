@@ -18,7 +18,9 @@ initial_velocity_max = 98.95
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = 50.0
 gravity = Vector3(0, 10, 0)
-scale_max = 3.0
+scale_min = 0.25
+hue_variation_min = -0.09
+hue_variation_max = 0.18
 anim_offset_max = 1.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]

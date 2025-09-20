@@ -8,8 +8,8 @@ signal drawing_card
 signal removing_card
 
 const Card_Background = [
-	preload("res://Assets/Cards/greencard.svg"),
-	preload("res://Assets/Cards/redcard.svg")
+	preload("res://Assets/Cards/greencard.png"),
+	preload("res://Assets/Cards/redcard.png")
 ]
 
 enum Ids {ChampiHouse}
@@ -17,7 +17,7 @@ enum Cards_Data {Texture, Type, Cost, Score}
 
 const Cards = {
 	Ids.ChampiHouse: {
-		Cards_Data.Texture: preload("res://Assets/champi_maison.png"),
+		Cards_Data.Texture: preload("res://Assets/Building/Illustration/I_4.png"),
 		Cards_Data.Type: MyGame.building_type.Production,
 		Cards_Data.Cost: 1,
 		Cards_Data.Score: 1
@@ -53,8 +53,8 @@ func draw_card(N:int):
 	var vp_size : Vector2 = get_viewport().size
 	var zoom_factor : float = cam.zoom.x   # assume uniform zoom
 	var visible_in_units : Vector2 = vp_size / zoom_factor
-	print("Viewport (px):", vp_size)
-	print("Visible area (world units):", visible_in_units)
+	#print("Viewport (px):", vp_size)
+	#print("Visible area (world units):", visible_in_units)
 	
 	var SURFACE_W = vp_size.x
 	var SURFACE_H = vp_size.y
