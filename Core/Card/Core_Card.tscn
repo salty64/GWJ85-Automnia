@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" uid="uid://dpobslfcblqf" path="res://Core/Card/Core_Card.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://b1tk3imjw5dfm" path="res://Core/PlaceHolderFront.svg" id="3_tnkkd"]
+[ext_resource type="Texture2D" uid="uid://b1tk3imjw5dfm" path="res://Assets/Cards/PlaceHolderFront.svg" id="3_tnkkd"]
 [ext_resource type="AudioStream" uid="uid://bw2j8bqi8ccw5" path="res://Assets/SFX/card-shove-3.ogg" id="4_i0yoq"]
 [ext_resource type="AudioStream" uid="uid://defflx6n3edt7" path="res://Assets/SFX/card-place-1.ogg" id="5_bhp3g"]
 
@@ -41,10 +41,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Name" type="Label" parent="Card/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
