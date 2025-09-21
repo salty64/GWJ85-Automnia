@@ -6,5 +6,5 @@
 [node name="BuildingSprite" type="Sprite2D"]
 texture = ExtResource("1_fbfta")
 centered = false
-offset = Vector2(-175, -295)
+offset = Vector2(-150, -246)
 script = ExtResource("2_acn3t")
