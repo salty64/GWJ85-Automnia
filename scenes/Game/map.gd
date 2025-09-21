@@ -113,7 +113,7 @@ func instantiate_ghost_buildings(dic:Dictionary):
 
 		var pos = ghost_buildings[id][ghost_buildings_data.pos]
 
-		sprite.position = Vector2(175, 206) * (pos.x * Vector2(1, 0.5) + pos.y * Vector2(-1, 0.5))
+		sprite.position = Vector2(150, 174) * (pos.x * Vector2(1, 0.5) + pos.y * Vector2(-1, 0.5))
 
 		ghost_buildings[id][ghost_buildings_data.node] = sprite
 

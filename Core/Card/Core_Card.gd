@@ -16,8 +16,27 @@ var zoom_tween:Tween
 
 var m_id:MyGame.Ids
 
+const illustration_sprites = {
+	MyGame.Ids.bigMushroom:preload("res://Assets/Building/Illustration/I_4.png"),
+	MyGame.Ids.pumpkin:preload("res://Assets/Building/Illustration/I_9.png"),
+	MyGame.Ids.candle:preload("res://Assets/Building/Illustration/I_6.png"),
+	MyGame.Ids.manyMushroom:preload("res://Assets/Building/Illustration/I_1.png"),
+	MyGame.Ids.pumpkin2:preload("res://Assets/Building/Illustration/I_5.png"),
+	MyGame.Ids.pineCone2:preload("res://Assets/Building/Illustration/I_2.png"),
+	MyGame.Ids.acorn2:preload("res://Assets/Building/Illustration/I_3.png"),
+	MyGame.Ids.leaf:preload("res://Assets/Building/Illustration/I_0.png"),
+	MyGame.Ids.teapot:preload("res://Assets/Building/Illustration/I_7.png"),
+	MyGame.Ids.pineCone:preload("res://Assets/Building/Illustration/I_8.png"),
+	MyGame.Ids.umbrella:preload("res://Assets/Building/Illustration/I_13.png"),
+	MyGame.Ids.chestnut:preload("res://Assets/Building/Illustration/I_12.png"),
+	MyGame.Ids.mushroom3:preload("res://Assets/Building/Illustration/I_10.png"),
+	MyGame.Ids.pumpkin3:preload("res://Assets/Building/Illustration/I_11.png"),
+	MyGame.Ids.acorn:preload("res://Assets/Building/Illustration/I_14.png")
+}
+
 func initialize_card(card_background:Texture2D, cost:int, score:int, id:int):
 	background.texture = card_background
+	imageTextureRect.texture = illustration_sprites[id]
 	costLabel.text = str(cost)
 	scoreLabel.text = str(score)
 
