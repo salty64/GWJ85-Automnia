@@ -28,6 +28,8 @@ enum Ids {
 const Max_Cards_Played = 25
 var current_cards_played = 0
 
+@onready var sprite_score_leave = preload("res://scenes/ScoreLeaves/score_leaves.tscn")
+
 enum current_cards_data{pos, score}
 var current_cards:Dictionary
 
@@ -41,7 +43,7 @@ var hover_id_tmp := 0
 
 func _ready() -> void:
 	gui.set_cards(0, Max_Cards_Played)
-	
+
 	draw_cards()
 
 func set_pts_label_pos(index:int, pos:Vector2):
@@ -103,10 +105,14 @@ func _on_cards_in_hand_card_played(id:Ids) -> void:
 	
 	score += current_cards[id][current_cards_data.score]
 	
+	var building_played_coord = map.map_to_local(current_cards[id][0])
+
+	spawn_sprites(building_played_coord, Vector2.ZERO, 20)
+
 	gui.set_score(score)
-	
+
 	current_cards_played += 1
-	
+
 	gui.set_cards(current_cards_played, Max_Cards_Played)
 
 func _on_cards_in_hand_drawing_card() -> void:
@@ -149,3 +155,16 @@ func _on_cards_in_hand_hover_card(id: Variant) -> void:
 		pts_labels.set_label_visible(i, true)
 	
 	camera.position = map.ghost_buildings[id][map.ghost_buildings_data.node].position
+
+func spawn_sprites(center: Vector2, b: Vector2, n: int):
+	for i in range(n):
+		var angle = randf()*TAU
+		var dist = randf()*100
+		var pos = center + Vector2(cos(angle), sin(angle)) * dist
+		var sprite = sprite_score_leave.instantiate()
+
+		sprite.region_rect = Rect2(Vector2((i % 11) * 32, 0), Vector2(32, 32))
+		sprite.position = pos
+		sprite.camera = camera
+		#sprite.modulate = Color(0.26,0.93,0.24)
+		add_child(sprite)
