@@ -12,7 +12,7 @@ var available_pos_rect := Rect2i(-1, -1, 3, 3)
 const map_width = 7
 var tiles:PackedInt32Array
 
-enum ghost_buildings_data{pos, node}
+enum ghost_buildings_data{tile_pos, node}
 var ghost_buildings:Dictionary
 
 const building_sprites = {
@@ -49,6 +49,9 @@ func get_tile(pos:Vector2i) -> int:
 
 	return tiles[pos.y * map_width + pos.x]
 
+func map_to_local(tile_pos:Vector2i) -> Vector2:
+	return Vector2(150, 174) * (tile_pos.x * Vector2(1, 0.5) + tile_pos.y * Vector2(-1, 0.5))
+
 func get_surrounded_tiles_ids(pos:Vector2i) -> PackedInt32Array:
 	var out_array:PackedInt32Array
 	out_array.resize(8)
@@ -72,6 +75,32 @@ func get_surrounded_tiles_ids(pos:Vector2i) -> PackedInt32Array:
 		var id = get_tile(next_pos)
 
 		out_array[i] = id
+
+	return out_array
+
+func get_surrounded_tiles_data(tile_pos:Vector2i) -> Array:
+	var out_array:Array
+	out_array.resize(8)
+
+	var surrouded_pos = PackedVector2Array([
+		Vector2i(0, -1),
+		Vector2i(1, -1),
+		Vector2i(1, 0),
+		Vector2i(1, 1),
+		Vector2i(0, 1),
+		Vector2i(-1, 1),
+		Vector2i(-1, 0),
+		Vector2i(-1, -1)
+	])
+
+	for i in surrouded_pos.size():
+		var i_pos:Vector2i = surrouded_pos[i]
+
+		var next_pos:Vector2i = tile_pos + i_pos
+
+		var id = get_tile(next_pos)
+
+		out_array[i] = [id, next_pos]
 
 	return out_array
 
@@ -100,24 +129,22 @@ func add_new_rectangle_pts():
 						available_pos_rect.position.y + j
 				))
 	pass
-	
-func instantiate_ghost_buildings(dic:Dictionary):
-	ghost_buildings = dic.duplicate(true)
 
-	for id in dic:
-		var sprite = Building_Sprite.instantiate()
+func instantiate_ghost_building(id:MyGame.Ids, tile_pos:Vector2i):
+	var sprite = Building_Sprite.instantiate()
 
-		sprite.texture = building_sprites[id]
+	sprite.texture = building_sprites[id]
 
-		sprite.self_modulate.a = 0.5
+	sprite.self_modulate.a = 0.5
 
-		var pos = ghost_buildings[id][ghost_buildings_data.pos]
+	sprite.position = map_to_local(tile_pos)
 
-		sprite.position = Vector2(150, 174) * (pos.x * Vector2(1, 0.5) + pos.y * Vector2(-1, 0.5))
+	ghost_buildings[id] = {
+		ghost_buildings_data.tile_pos: tile_pos,
+		ghost_buildings_data.node: sprite
+	}
 
-		ghost_buildings[id][ghost_buildings_data.node] = sprite
-
-		add_child(sprite)
+	add_child(sprite)
 
 func hover_ghost_building(id:MyGame.Ids):
 	var sprite = ghost_buildings[id][ghost_buildings_data.node]
@@ -136,10 +163,10 @@ func build(id:MyGame.Ids):
 		if i_id == id:
 			ghost_buildings[i_id][ghost_buildings_data.node].self_modulate = Color.WHITE
 			
-			set_tile(ghost_buildings[i_id][ghost_buildings_data.pos], i_id)
+			set_tile(ghost_buildings[i_id][ghost_buildings_data.tile_pos], i_id)
 			continue
 		
-		available_pos.append(ghost_buildings[i_id][ghost_buildings_data.pos])
+		available_pos.append(ghost_buildings[i_id][ghost_buildings_data.tile_pos])
 
 		ghost_buildings[i_id][ghost_buildings_data.node].queue_free()
 

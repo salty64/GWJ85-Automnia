@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=15 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://h2tivxxvkfid" path="res://scenes/Game/myGame.gd" id="1_1p5ji"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dyblbq7qec357" path="res://Assets/SFX/card-slide-1.ogg" id="9_ph5vl"]
 [ext_resource type="AudioStream" uid="uid://dkdwqfrqsy333" path="res://Assets/SFX/card-slide-7.ogg" id="10_5rpqn"]
 [ext_resource type="PackedScene" uid="uid://ddgm18ec6wbnu" path="res://scenes/Game/fallen_leaves.tscn" id="11_5rpqn"]
+[ext_resource type="Script" uid="uid://4t1ssfr8g0hj" path="res://scenes/Game/pts_labels.gd" id="13_wg16f"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_1p5ji")
@@ -156,6 +157,9 @@ y_sort_enabled = true
 script = ExtResource("8_1p5ji")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 
 [node name="AudioStreamPlayer_drawing_card" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ph5vl")
@@ -163,6 +167,193 @@ stream = ExtResource("9_ph5vl")
 [node name="AudioStreamPlayer_removing_card" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_5rpqn")
 volume_db = -15.0
+
+[node name="PtsLabels" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("13_wg16f")
+
+[node name="Pts0" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts1" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts2" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts3" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts4" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts5" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts6" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts7" type="Control" parent="PtsLabels"]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pts8" type="Control" parent="PtsLabels"]
+visible = false
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="PtsLabels/Pts8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Fallen_leaves" parent="." instance=ExtResource("11_5rpqn")]
 
