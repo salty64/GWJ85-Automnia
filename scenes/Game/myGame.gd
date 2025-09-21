@@ -22,6 +22,8 @@ enum Ids {
 @onready var card_in_hand:Hand = %Cards_in_hand
 @onready var map:Map = %Map
 @onready var gui:Gui = $GUI
+@onready var camera:Camera2D = %Camera2D
+@onready var pts_labels:Control = %PtsLabels
 
 enum current_cards_data{pos, score}
 var current_cards:Dictionary
@@ -37,8 +39,13 @@ var hover_id_tmp := 0
 func _ready() -> void:
 	draw_cards()
 
+func set_pts_label_pos(index:int, pos:Vector2):
+	pts_labels.get_child(index).position = pos
+
 func draw_cards():
 	current_cards.clear()
+	
+	map.ghost_buildings.clear()
 	
 	var n_cards = 5
 	
@@ -62,11 +69,17 @@ func draw_cards():
 		
 		current_cards[card_id][current_cards_data.score] = calculate_card_score(card_id)
 		
+		map.instantiate_ghost_building(card_id, random_pos)
+		
 		array.remove_at(index)
 	
-	map.instantiate_ghost_buildings(current_cards)
-	
 	card_in_hand.draw_card(current_cards)
+
+func calculate_building_score(card_id:int, building_id:int) -> int:
+	if building_id != -1 and card_id != building_id:
+		return 1
+		
+	return 0
 
 func calculate_card_score(id:Ids) -> int:
 	var score := 0
@@ -74,8 +87,7 @@ func calculate_card_score(id:Ids) -> int:
 	var ids = map.get_surrounded_tiles_ids(current_cards[id][current_cards_data.pos])
 	
 	for i_id in ids:
-		if i_id != -1 and i_id != id:
-			score += 1
+		score += calculate_building_score(id, i_id)
 	
 	return score
 
@@ -106,3 +118,20 @@ func _on_cards_in_hand_hover_card(id: Variant) -> void:
 	hover_id_tmp = id
 	
 	map.hover_ghost_building(id)
+	
+	var surrounded_ids = map.get_surrounded_tiles_data(current_cards[id][current_cards_data.pos])
+	
+	for i in surrounded_ids.size():
+		var i_id = surrounded_ids[i][0]
+	
+		if i_id == -1:
+			pts_labels.set_label_visible(i, false)
+			continue
+		
+		var building_pos = map.map_to_local(surrounded_ids[i][1])
+		
+		pts_labels.set_label(i, building_pos, calculate_building_score(id, i_id))
+		
+		pts_labels.set_label_visible(i, true)
+	
+	camera.position = map.ghost_buildings[id][map.ghost_buildings_data.node].position
