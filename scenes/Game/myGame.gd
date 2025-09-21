@@ -25,6 +25,9 @@ enum Ids {
 @onready var camera:Camera2D = %Camera2D
 @onready var pts_labels:Control = %PtsLabels
 
+const Max_Cards_Played = 25
+var current_cards_played = 0
+
 enum current_cards_data{pos, score}
 var current_cards:Dictionary
 
@@ -37,6 +40,8 @@ var hover_id_tmp := 0
 # each card have a unique id / building
 
 func _ready() -> void:
+	gui.set_cards(0, Max_Cards_Played)
+	
 	draw_cards()
 
 func set_pts_label_pos(index:int, pos:Vector2):
@@ -99,6 +104,10 @@ func _on_cards_in_hand_card_played(id:Ids) -> void:
 	score += current_cards[id][current_cards_data.score]
 	
 	gui.set_score(score)
+	
+	current_cards_played += 1
+	
+	gui.set_cards(current_cards_played, Max_Cards_Played)
 
 func _on_cards_in_hand_drawing_card() -> void:
 	$AudioStreamPlayer_drawing_card.play()
@@ -109,7 +118,12 @@ func _on_cards_in_hand_removing_card() -> void:
 	pass # Replace with function body.
 
 func _on_cards_in_hand_clear_card_done() -> void:
-	draw_cards()
+	if current_cards_played < Max_Cards_Played:
+		draw_cards()
+	else:
+		end_menu.end_message.text = "Your score: " + str(score)
+		end_menu.show()
+		get_tree().paused = true
 
 func _on_cards_in_hand_hover_card(id: Variant) -> void:
 	if hover_id_tmp != 0:

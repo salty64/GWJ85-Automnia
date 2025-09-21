@@ -91,7 +91,6 @@ func create_card(pos:Vector2, anglerect:float, id:MyGame.Ids, score:int):
 
 	card.initialize_card(
 		Card_Background[0],
-		0,
 		score,
 		id
 	)
@@ -107,7 +106,7 @@ func clear_all_cards(except: CardUI = null):
 			tw0.tween_callback(emit_removing_card)
 			tw0.tween_interval(0.2)
 
-			tw0.chain().tween_property(card, "scale", Vector2.ZERO, 0.5) \
+			tw0.chain().tween_property(card, "scale", Vector2.ZERO, 0.25) \
 			  .set_trans(Tween.TRANS_BACK) \
 			  .set_ease(Tween.EASE_IN)
 			tw0.chain().tween_callback(Callable(self, "remove_child").bind(card))
