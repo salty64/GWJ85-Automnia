@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyfaalnuo0vo3"]
+
+[ext_resource type="Texture2D" uid="uid://le44uwhc6j7" path="res://Assets/fallen_leaves.svg" id="1_ie165"]
+[ext_resource type="Script" uid="uid://chh4k67pcsjns" path="res://scenes/ScoreLeaves/score_leaves.gd" id="2_ifxf8"]
+
+[node name="Score_leaves" type="Sprite2D"]
+modulate = Color(0.21, 1, 0.275833, 1)
+texture = ExtResource("1_ie165")
+region_enabled = true
+region_rect = Rect2(352, 0, 32, 32)
+script = ExtResource("2_ifxf8")
