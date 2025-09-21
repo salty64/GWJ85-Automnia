@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=12 format=3 uid="uid://c6k5nnpbypshi"]
 
 [ext_resource type="Script" uid="uid://c6rmikfwpdv6t" path="res://scenes/MainMenu/MainMenu.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://c8pj2bhsw2of2" path="res://Assets/Fonts/beauty angelique.ttf" id="3_0qq82"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://choevp6ilq78t" path="res://scenes/LoadSaveMenu/loadSaveMenu.tscn" id="5_mfpq2"]
 [ext_resource type="PackedScene" uid="uid://djnvp4x64ukay" path="res://scenes/OptionsMenu/OptionsContainer.tscn" id="6_ky335"]
 [ext_resource type="PackedScene" uid="uid://ddgm18ec6wbnu" path="res://scenes/Game/fallen_leaves.tscn" id="9_y5ja3"]
+[ext_resource type="Texture2D" uid="uid://bogvjstlh4u5a" path="res://Assets/Building/Illustration/I_4.png" id="11_oy0qi"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -180,6 +181,11 @@ size_flags_horizontal = 3
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 dialog_text = "Quit the Game ?"
+
+[node name="I4" type="Sprite2D" parent="."]
+position = Vector2(955, 450)
+scale = Vector2(1.475, 1.5)
+texture = ExtResource("11_oy0qi")
 
 [node name="Fallen_leaves" parent="." instance=ExtResource("9_y5ja3")]
 
