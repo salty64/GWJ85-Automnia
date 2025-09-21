@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1flo1brh3p4c"]
+[gd_scene load_steps=16 format=3 uid="uid://d1flo1brh3p4c"]
 
 [ext_resource type="Script" uid="uid://h2tivxxvkfid" path="res://scenes/Game/myGame.gd" id="1_1p5ji"]
 [ext_resource type="PackedScene" uid="uid://cdwvtbtwmrqbn" path="res://scenes/PauseMenu/PauseMenu.tscn" id="2_hcope"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cp3p3kqcjh0me" path="res://scenes/EndMenu/EndMenu.tscn" id="3_yfekm"]
 [ext_resource type="Script" uid="uid://gfgjfmgyujtv" path="res://scenes/Game/Sprite2D.gd" id="4_lltyx"]
 [ext_resource type="PackedScene" uid="uid://ow10mhmpv7ef" path="res://Core/Cards_in_hand/cards_in_hand.tscn" id="6_5734q"]
+[ext_resource type="FontFile" uid="uid://chkiynvnut1fn" path="res://Assets/Fonts/Magiera Script.ttf" id="6_u6w8h"]
 [ext_resource type="Script" uid="uid://dbwubktiqgxsf" path="res://scenes/Game/control.gd" id="7_dxsly"]
 [ext_resource type="Script" uid="uid://cv32t48s5fjhe" path="res://scenes/Game/map.gd" id="8_1p5ji"]
 [ext_resource type="AudioStream" uid="uid://dyblbq7qec357" path="res://Assets/SFX/card-slide-1.ogg" id="9_ph5vl"]
@@ -34,15 +35,8 @@ stretch_mode = 5
 [node name="GUI" type="CanvasLayer" parent="."]
 script = ExtResource("2_yvoo5")
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource("2_hcope")]
-unique_name_in_owner = true
-visible = false
-
-[node name="EndMenu" parent="GUI" instance=ExtResource("3_yfekm")]
-unique_name_in_owner = true
-visible = false
-
 [node name="Control" type="Control" parent="GUI" node_paths=PackedStringArray("hand")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,77 +67,46 @@ text = "Redraw 5"
 layout_mode = 2
 text = "Draw +1"
 
-[node name="RemoveMe" type="VBoxContainer" parent="GUI"]
-visible = false
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -120.0
-offset_bottom = 120.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="GUI/RemoveMe"]
-layout_mode = 2
-text = "This is the fake game scene.
-You can update it.
-Or replace it, in this case do not forget to update the project settings.
-(You should activate advanced settings to see the Addons sub-category in Application)
-
-Press Esc to open the pause menu.
-
-Here you can choose to win or loose:"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/RemoveMe"]
-layout_mode = 2
-alignment = 1
-
-[node name="WinButton" type="Button" parent="GUI/RemoveMe/HBoxContainer"]
-layout_mode = 2
-text = "Win"
-
-[node name="LooseButton" type="Button" parent="GUI/RemoveMe/HBoxContainer"]
-layout_mode = 2
-text = "Loose"
-
 [node name="Cards_in_hand" parent="GUI" instance=ExtResource("6_5734q")]
 unique_name_in_owner = true
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Control2" type="Control" parent="GUI"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="ColorRect" type="ColorRect" parent="GUI/Control2"]
-layout_mode = 0
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-pivot_offset = Vector2(20, 20)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ScoreLabel" type="Label" parent="GUI"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 52.0
 grow_horizontal = 2
-text = "0"
+theme_override_constants/separation = 20
+
+[node name="ScoreLabel" type="Label" parent="GUI/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_u6w8h")
+theme_override_font_sizes/font_size = 32
+text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CardLabel" type="Label" parent="GUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_u6w8h")
+theme_override_font_sizes/font_size = 32
+text = "0/25"
+
+[node name="EndMenu" parent="GUI" instance=ExtResource("3_yfekm")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("2_hcope")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
 
 [node name="PauseChecker" type="Sprite2D" parent="."]
 visible = false
@@ -357,15 +320,13 @@ vertical_alignment = 1
 
 [node name="Fallen_leaves" parent="." instance=ExtResource("11_5rpqn")]
 
-[connection signal="ask_to_save" from="GUI/PauseMenu" to="." method="_on_pause_menu_ask_to_save"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button3" to="GUI/Control" method="_on_button_3_pressed"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button4" to="GUI/Control" method="_on_button_4_pressed"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button5" to="GUI/Control" method="_on_button_5_pressed"]
 [connection signal="pressed" from="GUI/Control/HBoxContainer/Button6" to="GUI/Control" method="_on_button_6_pressed"]
-[connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/WinButton" to="." method="_on_win"]
-[connection signal="pressed" from="GUI/RemoveMe/HBoxContainer/LooseButton" to="." method="_on_gameover"]
 [connection signal="card_played" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_card_played"]
 [connection signal="clear_card_done" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_clear_card_done"]
 [connection signal="drawing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_drawing_card"]
 [connection signal="hover_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_hover_card"]
 [connection signal="removing_card" from="GUI/Cards_in_hand" to="." method="_on_cards_in_hand_removing_card"]
+[connection signal="ask_to_save" from="GUI/PauseMenu" to="." method="_on_pause_menu_ask_to_save"]

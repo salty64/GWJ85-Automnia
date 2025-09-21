@@ -54,20 +54,7 @@ text = " "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Card/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Cost" type="Label" parent="Card/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "000"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Score" type="Label" parent="Card/VBoxContainer/HBoxContainer"]
+[node name="Score" type="Label" parent="Card/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

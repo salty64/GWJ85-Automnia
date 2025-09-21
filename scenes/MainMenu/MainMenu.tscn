@@ -35,6 +35,12 @@ texture = ExtResource("3_y5ja3")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="I4" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(955, 450)
+scale = Vector2(1.475, 1.5)
+texture = ExtResource("11_oy0qi")
+
 [node name="VersionNumber" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -181,11 +187,6 @@ size_flags_horizontal = 3
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 dialog_text = "Quit the Game ?"
-
-[node name="I4" type="Sprite2D" parent="."]
-position = Vector2(955, 450)
-scale = Vector2(1.475, 1.5)
-texture = ExtResource("11_oy0qi")
 
 [node name="Fallen_leaves" parent="." instance=ExtResource("9_y5ja3")]
 

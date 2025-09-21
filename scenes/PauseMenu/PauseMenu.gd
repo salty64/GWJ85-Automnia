@@ -2,9 +2,9 @@ extends Control
 
 signal ask_to_save
 
-const confirm_menu = "Do you want to save before go back to Main Menu ?"
+const confirm_menu = "Go back to Main Menu ?"
 const confirm_restart = "Restart the Game ?"
-const confirm_quit = "Do you want to save before quit the Game ?"
+const confirm_quit = "Quit the Game ?"
 
 @onready var confirm_dialog = %RGT_ConfirmationDialog
 @onready var yesno_dialog = %RGT_YesNoDialog
@@ -50,16 +50,14 @@ func _on_options_button_pressed():
 	sub_menu_container.show()
 
 func _on_main_menu_button_pressed():
-	yesno_dialog.dialog_text = confirm_menu
-	yesno_dialog.force_ok_pressed_callable(_on_confirm_main_menu_confirmed)
-	yesno_dialog.force_no_pressed_callable(return_to_main_menu)
-	yesno_dialog.popup_centered()
+	confirm_dialog.dialog_text = confirm_menu
+	confirm_dialog.force_ok_pressed_callable(return_to_main_menu)
+	confirm_dialog.popup_centered()
 
 func _on_exit_button_pressed():
-	yesno_dialog.dialog_text = confirm_quit
-	yesno_dialog.force_ok_pressed_callable(_on_confirm_exit_confirmed)
-	yesno_dialog.force_no_pressed_callable(quit)
-	yesno_dialog.popup_centered()
+	confirm_dialog.dialog_text = confirm_quit
+	confirm_dialog.force_ok_pressed_callable(quit)
+	confirm_dialog.popup_centered()
 
 func _on_confirm_restart_confirmed():
 	hide()

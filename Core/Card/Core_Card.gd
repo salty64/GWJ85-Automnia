@@ -5,10 +5,8 @@ extends Control
 
 @onready var card = $Card
 @onready var background = %Background
-@onready var costLabel = %Cost
 @onready var scoreLabel = %Score
 @onready var imageTextureRect = %Image
-@onready var nameLabel = %Name
 
 var is_played:bool=false
 
@@ -34,15 +32,18 @@ const illustration_sprites = {
 	MyGame.Ids.acorn:preload("res://Assets/Building/Illustration/I_14.png")
 }
 
-func initialize_card(card_background:Texture2D, cost:int, score:int, id:int):
+func initialize_card(card_background:Texture2D, score:int, id:int):
 	background.texture = card_background
 	imageTextureRect.texture = illustration_sprites[id]
-	costLabel.text = str(cost)
-	scoreLabel.text = str(score)
+	
+	var score_str = str(score)
+	
+	if score >= 0:
+		score_str = "+" + score_str
+	
+	scoreLabel.text = score_str
 
 	m_id = id
-
-	nameLabel.text = str(id)
 
 func play_card_animation():
 	var viewport_size = get_viewport_rect().size
@@ -54,7 +55,6 @@ func play_card_animation():
 	z_index = 2
 	master.tween_property(self, "position", Vector2(0, -viewport_size.y / 2), 0.3)
 	master.tween_property(self, "rotation_degrees", 0, 0.2)
-	master.tween_property(self, "scale", Vector2(3, 3), 0.2)
 
 	
 	$AudioStreamPlayer_play.play()

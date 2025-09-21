@@ -22,13 +22,19 @@ func set_gameover():
 	end_message.text = GameOver_Text
 
 func _on_restart_button_pressed():
-	confirm_dialog.popup_confirm(confirm_restart, _on_confirm_restart_confirmed)
+	confirm_dialog.dialog_text = confirm_restart
+	confirm_dialog.force_ok_pressed_callable(_on_confirm_restart_confirmed)
+	confirm_dialog.popup_centered()
 
 func _on_exit_button_pressed():
-	confirm_dialog.popup_confirm(confirm_quit, _on_confirm_exit_confirmed)
+	confirm_dialog.dialog_text = confirm_quit
+	confirm_dialog.force_ok_pressed_callable(_on_confirm_exit_confirmed)
+	confirm_dialog.popup_centered()
 
 func _on_main_menu_button_pressed():
-	confirm_dialog.popup_confirm(confirm_menu, _on_confirm_main_menu_confirmed)
+	confirm_dialog.dialog_text = confirm_menu
+	confirm_dialog.force_ok_pressed_callable(_on_confirm_main_menu_confirmed)
+	confirm_dialog.popup_centered()
 
 func _on_confirm_restart_confirmed():
 	hide()

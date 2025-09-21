@@ -32,6 +32,7 @@ Transitions="*res://addons/rakugo_game_template/Autoloads/Transitions/transition
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -49,3 +50,4 @@ select_card={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
