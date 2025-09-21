@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://baofmuwdjf2v8"]
+
+[ext_resource type="Texture2D" uid="uid://bnor6c38h4pp6" path="res://Assets/Building/Iso/B_4.png" id="1_fbfta"]
+[ext_resource type="Script" uid="uid://buggna81fyvjy" path="res://scenes/BuildingSprite/building_sprite.gd" id="2_acn3t"]
+
+[node name="BuildingSprite" type="Sprite2D"]
+texture = ExtResource("1_fbfta")
+centered = false
+offset = Vector2(-175, -295)
+script = ExtResource("2_acn3t")
