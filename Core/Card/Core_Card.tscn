@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://t8h8ev5w8iud"]
+[gd_scene load_steps=6 format=3 uid="uid://t8h8ev5w8iud"]
 
 [ext_resource type="Script" uid="uid://dpobslfcblqf" path="res://Core/Card/Core_Card.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://b1tk3imjw5dfm" path="res://Assets/Cards/PlaceHolderFront.svg" id="3_tnkkd"]
+[ext_resource type="Texture2D" uid="uid://b8a6ufjlimyk4" path="res://Assets/Cards/greencard.png" id="2_i0yoq"]
+[ext_resource type="Texture2D" uid="uid://bo2s57ceo86j2" path="res://Assets/Building/Illustration/I_1.png" id="3_i0yoq"]
 [ext_resource type="AudioStream" uid="uid://bw2j8bqi8ccw5" path="res://Assets/SFX/card-shove-3.ogg" id="4_i0yoq"]
 [ext_resource type="AudioStream" uid="uid://defflx6n3edt7" path="res://Assets/SFX/card-place-1.ogg" id="5_bhp3g"]
 
@@ -18,9 +19,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(75, 100)
 
 [node name="Background" type="TextureRect" parent="Card"]
@@ -31,7 +35,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_tnkkd")
+texture = ExtResource("2_i0yoq")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Card"]
 layout_mode = 1
@@ -45,7 +50,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "NAME"
+text = " "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -73,10 +78,11 @@ vertical_alignment = 1
 
 [node name="Image" type="TextureRect" parent="Card/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
+texture = ExtResource("3_i0yoq")
 expand_mode = 4
+stretch_mode = 5
 
 [node name="AudioStreamPlayer_hover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_i0yoq")
